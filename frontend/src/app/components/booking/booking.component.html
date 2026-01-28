@@ -1,0 +1,29 @@
+<div class="min-h-screen flex items-center justify-center p-6 bg-gray-50 font-sans">
+  <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+    <div class="bg-white p-8 rounded-xl shadow-lg">
+      <h1 class="text-3xl font-bold text-sk-text mb-2">Salonkee Tech Demo</h1>
+      <p class="text-gray-500 mb-8">Postgres Transaction Isolation Levels</p>
+
+      <div class="flex flex-col gap-4">
+        <button (click)="runDemo('unsafe')" [disabled]="isProcessing"
+                class="w-full py-4 bg-red-50 text-red-600 font-bold rounded-lg border border-red-200 hover:bg-red-100 disabled:opacity-50 transition">
+          💥 Run Unsafe Mode (Race Condition)
+        </button>
+        
+        <button (click)="runDemo('safe')" [disabled]="isProcessing"
+                class="w-full py-4 bg-sk-green text-white font-bold rounded-lg shadow-md hover:bg-green-900 disabled:opacity-50 transition">
+          🛡️ Run Safe Mode (Serializable)
+        </button>
+      </div>
+    </div>
+
+    <div class="bg-gray-900 text-green-400 p-6 rounded-xl shadow-inner font-mono text-sm h-96 overflow-y-auto border border-gray-800">
+      <div *ngIf="logs.length === 0" class="opacity-30 italic">Ready to start simulation...</div>
+      <div *ngFor="let log of logs" class="mb-2 border-b border-gray-800 pb-1">
+        > {{ log }}
+      </div>
+    </div>
+
+  </div>
+</div>

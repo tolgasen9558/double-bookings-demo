@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: Smooth font rendering */
+body { @apply text-sk-text bg-gray-50; }
