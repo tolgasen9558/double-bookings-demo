@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'app-booking',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './booking.component.html'
 })
 export class BookingComponent {
