@@ -1,29 +1,207 @@
-<div class="min-h-screen flex items-center justify-center p-6 bg-gray-50 font-sans">
-  <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8">
-    
-    <div class="bg-white p-8 rounded-xl shadow-lg">
-      <h1 class="text-3xl font-bold text-sk-text mb-2">Salonkee Tech Demo</h1>
-      <p class="text-gray-500 mb-8">Postgres Transaction Isolation Levels</p>
-
-      <div class="flex flex-col gap-4">
-        <button (click)="runDemo('unsafe')" [disabled]="isProcessing"
-                class="w-full py-4 bg-red-50 text-red-600 font-bold rounded-lg border border-red-200 hover:bg-red-100 disabled:opacity-50 transition">
-          💥 Run Unsafe Mode (Race Condition)
-        </button>
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex items-center gap-8">
         
-        <button (click)="runDemo('safe')" [disabled]="isProcessing"
-                class="w-full py-4 bg-sk-green text-white font-bold rounded-lg shadow-md hover:bg-green-900 disabled:opacity-50 transition">
-          🛡️ Run Safe Mode (Serializable)
-        </button>
+        <div class="relative group cursor-not-allowed">
+            <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-sk-orange rounded flex items-center justify-center text-white font-bold text-xl">S</div>
+            <span class="text-xl font-bold text-sk-orange tracking-tight">salonkee</span>
+            </div>
+            <div class="absolute top-full mt-2 left-0 px-3 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
+            Feature disabled (Demo Mode)
+            </div>
+        </div>
+
+        <div class="relative group hidden md:flex">
+          <div class="bg-gray-100 rounded-full px-4 py-2 w-96 flex items-center text-gray-500 text-sm cursor-not-allowed">
+            Search for salons, services...
+          </div>
+          <div class="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
+            Feature disabled (Demo Mode)
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 text-sm font-medium text-gray-600">
+        
+        <div class="relative group cursor-not-allowed">
+          <span class="hidden md:block">For Business</span>
+          <div class="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
+            Feature disabled (Demo Mode)
+          </div>
+        </div>
+
+        <div class="relative group cursor-not-allowed">
+          <span class="hidden md:block">Login</span>
+          <div class="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
+            Feature disabled (Demo Mode)
+          </div>
+        </div>
+
+        <div class="relative group cursor-not-allowed">
+            <button class="bg-gray-900 text-white px-4 py-2 rounded-full text-xs pointer-events-none">NL / FR / EN</button>
+            <div class="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
+                Feature disabled (Demo Mode)
+            </div>
+        </div>
+
       </div>
     </div>
+  </div>
+</nav>
 
-    <div class="bg-gray-900 text-green-400 p-6 rounded-xl shadow-inner font-mono text-sm h-96 overflow-y-auto border border-gray-800">
-      <div *ngIf="logs.length === 0" class="opacity-30 italic">Ready to start simulation...</div>
-      <div *ngFor="let log of logs" class="mb-2 border-b border-gray-800 pb-1">
-        > {{ log }}
-      </div>
+<div class="flex flex-col min-h-screen">
+  
+  <div class="flex-grow bg-[#F8F9FA]">
+    
+    <div class="relative h-48 md:h-64 bg-gray-800 overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=2074" 
+           class="w-full h-full object-cover opacity-60">
     </div>
 
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="md:col-span-1">
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <div class="w-24 h-24 bg-white rounded-full p-1 -mt-16 mb-4 shadow-md mx-auto md:mx-0">
+              <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80&w=200" 
+                   class="w-full h-full rounded-full object-cover">
+            </div>
+            
+            <h1 class="text-2xl font-bold text-gray-900 text-center md:text-left">Adikt Barber</h1>
+            <div class="flex items-center justify-center md:justify-start gap-1 mt-2 text-sk-orange">
+              ★★★★★ <span class="text-gray-400 text-sm font-normal">(482 reviews)</span>
+            </div>
+            
+            <div class="mt-6 space-y-3 text-sm text-gray-600">
+              <div class="flex items-start gap-3">
+                <span>📍</span>
+                <span>8 Rue de la Gare, L-1610 Luxembourg</span>
+              </div>
+              <div class="flex items-start gap-3 text-green-600 font-medium">
+                <span>●</span>
+                <span>Open now (until 19:00)</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-gray-100">
+               <h3 class="font-bold text-gray-900 mb-2">About</h3>
+               <p class="text-gray-500 text-sm leading-relaxed">
+                 Premier barbershop in the heart of Luxembourg. We specialize in classic cuts and modern styling. 
+               </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="md:col-span-2 space-y-6 mt-12 md:mt-32 pb-20">
+          
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Popular Services</h2>
+
+            <div *ngIf="raceResult" class="mb-6 rounded-lg p-4 border-l-4 shadow-sm animate-pulse"
+                [ngClass]="raceResult.successCount > 1 ? 'bg-red-50 border-red-500 text-red-700' : 'bg-green-50 border-green-500 text-green-700'">
+                
+                <div *ngIf="raceResult.successCount > 1" class="flex items-center gap-3">
+                    <span class="text-2xl">🚨</span>
+                    <div>
+                        <h3 class="font-bold text-lg">Double Booking Error</h3>
+                        <p class="text-sm">
+                            Race condition! <strong>{{ raceResult.successCount }} bookings</strong> created for 1 slot.
+                        </p>
+                    </div>
+                </div>
+
+                <div *ngIf="raceResult.successCount === 1" class="flex items-center gap-3">
+                    <span class="text-2xl">✅</span>
+                    <div>
+                        <h3 class="font-bold text-lg">Success!</h3>
+                        <p class="text-sm">
+                            Only 1 booking accepted. Database successfully prevented <strong>19 conflicts</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+          <div class="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:border-sk-orange transition group">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-bold text-gray-900 text-lg">Unsafe Transaction</h3>
+                <p class="text-gray-500 text-sm mt-1 pr-4">Standard PostgreSQL transaction. Vulnerable to race conditions where multiple requests read the same slot availability before the first booking commits.</p>
+                <div class="mt-3 flex items-center gap-4 text-xs text-gray-500 font-medium">
+                  <span class="bg-red-50 text-red-600 px-2 py-1 rounded border border-red-100">Concurrency Bug</span>
+                  <span>30 mins</span>
+                </div>
+              </div>
+              <div class="text-right pl-4">
+                <div class="font-bold text-gray-900 text-lg">25.00 €</div>
+                <button (click)="runDemo('unsafe')" [disabled]="isProcessing || isSoldOut || isResetting"
+                        [ngClass]="isSoldOut ? 'bg-gray-300 cursor-not-allowed hover:bg-gray-300' : 'bg-sk-orange hover:bg-orange-600 active:scale-95'"
+                        class="mt-3 text-white px-6 py-2 rounded-lg font-bold text-sm shadow-sm transition whitespace-nowrap">
+                  {{ isSoldOut ? 'Sold Out' : (isProcessing ? 'Booking...' : 'Book Now') }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:border-sk-green transition group">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-bold text-gray-900 text-lg">Safe Transaction</h3>
+                <p class="text-gray-500 text-sm mt-1 pr-4">Uses <strong>Row Locking (FOR UPDATE)</strong>. The database physically locks the slot row during the read, forcing other transactions to wait in line.</p>
+                <div class="mt-3 flex items-center gap-4 text-xs text-gray-500 font-medium">
+                  <span class="bg-green-50 text-green-700 px-2 py-1 rounded border border-green-100">Thread Safe</span>
+                  <span>45 mins</span>
+                </div>
+              </div>
+              <div class="text-right pl-4">
+                <div class="font-bold text-gray-900 text-lg">45.00 €</div>
+                <button (click)="runDemo('safe')" [disabled]="isProcessing || isSoldOut || isResetting"
+                        [ngClass]="isSoldOut ? 'bg-gray-300 cursor-not-allowed hover:bg-gray-300' : 'bg-sk-green hover:bg-green-900 active:scale-95'"
+                        class="mt-3 text-white px-6 py-2 rounded-lg font-bold text-sm shadow-sm transition whitespace-nowrap">
+                  {{ isSoldOut ? 'Sold Out' : (isProcessing ? 'Booking...' : 'Book Now') }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-12 text-center">
+              
+              <button (click)="resetAndLog()" 
+                      [disabled]="isResetting || isProcessing"
+                      [class.opacity-50]="isResetting || isProcessing"
+                      class="w-full py-4 rounded-xl border-2 border-red-100 text-red-600 font-bold uppercase tracking-wider hover:bg-red-50 hover:border-red-200 transition mb-6 shadow-sm">
+                  {{ isResetting ? 'Resetting...' : 'Force Reset Database' }}
+              </button>
+              
+              <p class="text-gray-400 text-xs">
+                <strong>Tech Stack:</strong> NodeJS (Express), Postgres, AWS App Runner(EC2, Cloudwatch, RDS), Angular 19, Tailwind CSS.
+              </p>
+
+              <a href="https://github.com/tolgasen9558/double-bookings-demo" target="_blank" 
+               class="inline-flex items-center gap-2 text-sk-green hover:text-green-800 font-bold text-xs mt-4 transition">
+                <svg fill="currentColor" viewBox="0 0 24 24" class="w-4 h-4">
+                  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                </svg>
+                View Source Code
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white shadow-2xl transition-transform duration-300 z-50"
+     [class.translate-y-full]="logs.length === 0">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-start">
+    <div class="font-mono text-xs md:text-sm h-64 overflow-y-auto w-full pr-10 space-y-1">
+        <div class="text-gray-400 border-b border-gray-700 pb-1 mb-2 uppercase text-[10px] tracking-wider">Transaction Log</div>
+        <div *ngFor="let log of logs" [class.text-red-400]="log.includes('FAIL') || log.includes('Error')" [class.text-green-400]="log.includes('SUCCESS') || log.includes('✅')">
+            > {{ log }}
+        </div>
+    </div>
+    <button (click)="logs = []" class="text-gray-500 hover:text-white text-xl">×</button>
   </div>
 </div>
